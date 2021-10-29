@@ -1,6 +1,6 @@
 import random
 
-words = ["jazz", "abyss", "affix", "Zugzwang", "glowworm", "waltz", "onyx", "jinx", "crypt", "rhythm", "zodiac", "razzmatazz", "kazoo"]
+words = ["jazz", "abyss", "affix", "zugzwang", "glowworm", "waltz", "onyx", "jinx", "crypt", "rhythm", "zodiac", "razzmatazz", "kazoo"]
 
 
 
@@ -43,7 +43,12 @@ def getGuess(alreadyGuessed):
 
 def playAgain():
      print('Do you want to play again? (yes or no)')
-     return input().lower().startswith('y')
+     if input().lower().startswith('y'):
+         return
+     else:
+         exit()
+
+     
 
 print('H A N G M A N')
 missedLetters = ''
@@ -52,34 +57,32 @@ secretWord = getrandomword(words)
 gameIsDone = False
 
 while True:
-     displayBoard(missedLetters, correctLetters, secretWord)
-
-     guess = getGuess(missedLetters + correctLetters)
-
-     if guess in secretWord:
-          correctLetters = correctLetters + guess
-
-          foundAllLetters = True
-          for i in range(len(secretWord)):
-               if secretWord[i] not in correctLetters:
-                    foundAllLetters = False
-                    break
-          if foundAllLetters:
-               print('Yes! The secret word is "' + secretWord + '"! You have won!')
-               gameIsDone = True
-     else:
-         missedLetters = missedLetters + guess
-
-         if len(missedLetters) == 5: 
-             displayBoard(missedLetters, correctLetters, secretWord)
-             print('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
-             gameIsDone = True
-
-
-
-if gameIsDone:
-    if playAgain():
+    if gameIsDone == True:
         missedLetters = ''
         correctLetters = ''
         gameIsDone = False
         secretWord = getrandomword(words)
+        playAgain()
+    else:
+        displayBoard(missedLetters, correctLetters, secretWord)
+
+        guess = getGuess(missedLetters + correctLetters)
+
+        if guess in secretWord:
+            correctLetters = correctLetters + guess
+
+            foundAllLetters = True
+            for i in range(len(secretWord)):
+                if secretWord[i] not in correctLetters:
+                        foundAllLetters = False
+                        break
+            if foundAllLetters:
+                print('Yes! The secret word is "' + secretWord + '"! You have won!')
+                gameIsDone = True
+        else:
+            missedLetters = missedLetters + guess
+
+            if len(missedLetters) == 5: 
+                displayBoard(missedLetters, correctLetters, secretWord)
+                print('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
+                gameIsDone = True
