@@ -1,6 +1,6 @@
 import random
 
-words = ["jazz", "abyss", "affix", "zugzwang", "glowworm", "waltz", "onyx", "jinx", "crypt", "rhythm", "zodiac", "razzmatazz", "kazoo"]
+words = ["jazz", "abyss", "affix", "zugzwang", "glowworm", "waltz", "onyx", "jinx", "crypt", "rhythm", "zodiac", "razzmatazz", "kazoo", "equip", "jelly", "pneumonia", "kiosk"]
 
 
 
